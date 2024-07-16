@@ -14,6 +14,7 @@ def timecode_to_seconds(
     # 29.97 -> 30, 59.94 -> 60
     int_frame_rate = round(frame_rate)
 
+    timecode = timecode.replace(";", ":")
     # parse timecode string
     h, m, s, f = [int(x) for x in timecode.split(':')]
 

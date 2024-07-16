@@ -8,6 +8,7 @@ from multiprocessing.managers import SharedMemoryManager
 from umi.real_world.rtde_interpolation_controller import RTDEInterpolationController
 from umi.real_world.wsg_controller import WSGController
 from umi.real_world.franka_interpolation_controller import FrankaInterpolationController
+from umi.real_world.idethink_interpolation_controller import IdeThinkInterpolationController
 from umi.real_world.multi_uvc_camera import MultiUvcCamera, VideoRecorder
 from diffusion_policy.common.timestamp_accumulator import (
     TimestampActionAccumulator,
@@ -237,6 +238,16 @@ class BimanualUmiEnv:
                     frequency=200,
                     Kx_scale=1.0,
                     Kxd_scale=np.array([2.0,1.5,2.0,1.0,1.0,1.0]),
+                    verbose=False,
+                    receive_latency=rc['robot_obs_latency']
+                )
+            elif rc['robot_type'].startswith('idethink'):
+                this_robot = IdeThinkInterpolationController(
+                    shm_manager=shm_manager,
+                    robot_ip=rc['robot_ip'],
+                    frequency=200,
+                    Kx_scale=1.0,
+                    Kxd_scale=np.array([2.0, 1.5, 2.0, 1.0, 1.0, 1.0]),
                     verbose=False,
                     receive_latency=rc['robot_obs_latency']
                 )

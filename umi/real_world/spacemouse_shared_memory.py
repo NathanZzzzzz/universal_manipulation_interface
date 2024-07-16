@@ -126,7 +126,7 @@ class Spacemouse(mp.Process):
 
     # ========= main loop ==========
     def run(self):
-        spnav_open()
+        # spnav_open()
         try:
             motion_event = np.zeros((7,), dtype=np.int64)
             button_state = np.zeros((self.n_buttons,), dtype=bool)

@@ -409,12 +409,12 @@ def main(input, output, tcp_offset, tx_slam_tag,
 
             csv_df = pd.read_csv(csv_path)
             
-            if csv_df['is_lost'].sum() > 10:
+            if csv_df['is_lost'].sum() > 1000:
                 # drop episode if too many lost frames
                 # unreliable tracking
                 break
             
-            if (~csv_df['is_lost']).sum() < 60:
+            if (~csv_df['is_lost']).sum() < 10:
                 break
 
             df = csv_df.loc[~csv_df['is_lost']]
